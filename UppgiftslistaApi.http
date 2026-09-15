@@ -1,0 +1,6 @@
+@UppgiftslistaApi_HostAddress = http://localhost:5277
+
+GET {{UppgiftslistaApi_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
