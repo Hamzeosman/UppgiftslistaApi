@@ -13,6 +13,7 @@ Backend-API byggt med ASP.NET Core Web API (.NET 10) för en enkel uppgiftslista
 - `POST /api/todo` – skapa en ny uppgift
 - `PUT /api/todo/{id}` – uppdatera en uppgift
 - `DELETE /api/todo/{id}` – ta bort en uppgift
+- `POST /api/todo/{id}/upload` – ladda upp en fil kopplad till en uppgift
 
 ## Komma igång
 ```bash
@@ -27,4 +28,4 @@ API:et startar på http://localhost:5277.
 - `Models/` – datamodeller (TodoItem)
 
 ## Status
-CRUD-endpoints och CORS för anrop från React-frontend (localhost:5173) är klara.
+CRUD-endpoints, filuppladdning och CORS för anrop från React-frontend (localhost:5173) är klara.
