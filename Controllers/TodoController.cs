@@ -63,4 +63,30 @@ public class TodoController : ControllerBase
             return NotFound();
         return NoContent();
     }
+
+    [HttpPost("{id}/upload")]
+    public async Task<IActionResult> UploadFile(int id, IFormFile file)
+    {
+        var todo = _service.GetById(id);
+        if (todo is null)
+            return NotFound();
+
+        if (file is null || file.Length == 0)
+            return BadRequest("Ingen fil vald.");
+
+        var uploadsFolder = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", "uploads");
+        Directory.CreateDirectory(uploadsFolder);
+
+        var safeFileName = $"{id}_{Path.GetFileName(file.FileName)}";
+        var filePath = Path.Combine(uploadsFolder, safeFileName);
+
+        using (var stream = new FileStream(filePath, FileMode.Create))
+        {
+            await file.CopyToAsync(stream);
+        }
+
+        _service.SetFile(id, safeFileName);
+
+        return Ok(new { fileName = safeFileName });
+    }
 }
