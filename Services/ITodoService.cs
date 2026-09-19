@@ -10,4 +10,5 @@ public interface ITodoService
     bool Update(int id, TodoItem updated);
     bool Delete(int id);
     List<TodoItem> Search(string? q);
+    bool SetFile(int id, string? fileName);
 }

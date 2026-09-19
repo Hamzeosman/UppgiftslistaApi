@@ -40,4 +40,12 @@ public class TodoService : ITodoService
 
     public List<TodoItem> Search(string? q) =>
         string.IsNullOrEmpty(q) ? _todos : _todos.Where(t => t.Title.Contains(q)).ToList();
+
+    public bool SetFile(int id, string? fileName)
+    {
+        var todo = GetById(id);
+        if (todo is null) return false;
+        todo.FileName = fileName;
+        return true;
+    }
 }
